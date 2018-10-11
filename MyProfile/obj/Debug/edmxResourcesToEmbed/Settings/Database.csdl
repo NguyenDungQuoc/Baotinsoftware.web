@@ -1,0 +1,946 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Mobile_ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="f_GetGROUP_NEWS_InParent_Result">
+    <Property Name="ID" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="f_GetGROUP_PRODUCTS_InParent_Result">
+    <Property Name="ID" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="f_GetGROUP_SERVICES_InParent_Result">
+    <Property Name="ID" Type="Int32" />
+  </ComplexType>
+  <EntityType Name="BANNERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Href" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="COLORS">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="PRODUCT_COLORS" Relationship="Self.FK_PRODUCT_COLORS_COLORS" FromRole="COLORS" ToRole="PRODUCT_COLORS" />
+  </EntityType>
+  <EntityType Name="CONTACTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GALLERY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Href" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="ID_GroupGallery" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="GROUP_GALLERY" Relationship="Self.FK_GALLERY_GROUP_GALLERY" FromRole="GALLERY" ToRole="GROUP_GALLERY" />
+  </EntityType>
+  <EntityType Name="GROUP_GALLERY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Parent_ID" Type="Int32" />
+    <NavigationProperty Name="GALLERY" Relationship="Self.FK_GALLERY_GROUP_GALLERY" FromRole="GROUP_GALLERY" ToRole="GALLERY" />
+  </EntityType>
+  <EntityType Name="GROUP_NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="ParentID" Type="Int32" />
+    <NavigationProperty Name="NEWS" Relationship="Self.FK_NEWS_GROUP_NEWS" FromRole="GROUP_NEWS" ToRole="NEWS" />
+  </EntityType>
+  <EntityType Name="GROUP_PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCTS_GROUP_PRODUCTS" FromRole="GROUP_PRODUCTS" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="GROUP_SERVICES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SERVICES" Relationship="Self.FK_SERVICES_GROUP_SERVICES" FromRole="GROUP_SERVICES" ToRole="SERVICES" />
+  </EntityType>
+  <EntityType Name="LINKS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Href" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="News_Sapo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsHot" Type="Boolean" />
+    <Property Name="TotalView" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="ID_UserPost" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="ID_GroupNews" Type="Int32" />
+    <NavigationProperty Name="GROUP_NEWS" Relationship="Self.FK_NEWS_GROUP_NEWS" FromRole="NEWS" ToRole="GROUP_NEWS" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK_NEWS_USER" FromRole="NEWS" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="ORDER_PRODUCTS" Relationship="Self.FK_ORDER_DETAILS_ORDER_PRODUCTS" FromRole="ORDER_DETAILS" ToRole="ORDER_PRODUCTS" />
+  </EntityType>
+  <EntityType Name="ORDER_PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="CustomerNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="TypePayment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TypeShipping" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ORDER_DETAILS" Relationship="Self.FK_ORDER_DETAILS_ORDER_PRODUCTS" FromRole="ORDER_PRODUCTS" ToRole="ORDER_DETAILS" />
+    <NavigationProperty Name="ORDER_STATUSES" Relationship="Self.FK_ORDERS_PRODUCTS_ORDER_STATUSES" FromRole="ORDER_PRODUCTS" ToRole="ORDER_STATUSES" />
+  </EntityType>
+  <EntityType Name="ORDER_STATUSES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ORDER_PRODUCTS" Relationship="Self.FK_ORDERS_PRODUCTS_ORDER_STATUSES" FromRole="ORDER_STATUSES" ToRole="ORDER_PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Slogan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Favicon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GoogleAnalytics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MapCode" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Fanpage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Copyright" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PRODUCT_COLORS">
+    <Key>
+      <PropertyRef Name="ProductColorId" />
+    </Key>
+    <Property Name="ProductColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="COLORS" Relationship="Self.FK_PRODUCT_COLORS_COLORS" FromRole="PRODUCT_COLORS" ToRole="COLORS" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCT_COLORS_PRODUCTS" FromRole="PRODUCT_COLORS" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PRODUCT_IMAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Products" Type="Int32" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCT_IMAGES_PRODUCTS" FromRole="PRODUCT_IMAGES" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PRODUCT_SIZES">
+    <Key>
+      <PropertyRef Name="ProductSizeId" />
+    </Key>
+    <Property Name="ProductSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SizeId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="SIZES" Relationship="Self.FK_PRODUCT_SIZES_PRODUCT_SIZES" FromRole="PRODUCT_SIZES" ToRole="SIZES" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCT_SIZES_PRODUCTS" FromRole="PRODUCT_SIZES" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PRODUCT_STATUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCTS_PRODUCT_STATUS" FromRole="PRODUCT_STATUS" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PRODUCT_TYPES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Product" Type="Int32" />
+    <Property Name="ID_Type" Type="Int32" />
+    <NavigationProperty Name="PRODUCTS" Relationship="Self.FK_PRODUCT_TYPES_PRODUCTS" FromRole="PRODUCT_TYPES" ToRole="PRODUCTS" />
+    <NavigationProperty Name="TYPES" Relationship="Self.FK_PRODUCT_TYPES_TYPES" FromRole="PRODUCT_TYPES" ToRole="TYPES" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Sapo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PriceOld" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_GroupProduct" Type="Int32" />
+    <Property Name="DatePublish" Type="DateTime" Precision="3" />
+    <Property Name="CountView" Type="Int32" />
+    <Property Name="CountBuy" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsHot" Type="Boolean" />
+    <NavigationProperty Name="GROUP_PRODUCTS" Relationship="Self.FK_PRODUCTS_GROUP_PRODUCTS" FromRole="PRODUCTS" ToRole="GROUP_PRODUCTS" />
+    <NavigationProperty Name="PRODUCT_COLORS" Relationship="Self.FK_PRODUCT_COLORS_PRODUCTS" FromRole="PRODUCTS" ToRole="PRODUCT_COLORS" />
+    <NavigationProperty Name="PRODUCT_IMAGES" Relationship="Self.FK_PRODUCT_IMAGES_PRODUCTS" FromRole="PRODUCTS" ToRole="PRODUCT_IMAGES" />
+    <NavigationProperty Name="PRODUCT_SIZES" Relationship="Self.FK_PRODUCT_SIZES_PRODUCTS" FromRole="PRODUCTS" ToRole="PRODUCT_SIZES" />
+    <NavigationProperty Name="PRODUCT_STATUS" Relationship="Self.FK_PRODUCTS_PRODUCT_STATUS" FromRole="PRODUCTS" ToRole="PRODUCT_STATUS" />
+    <NavigationProperty Name="PRODUCT_TYPES" Relationship="Self.FK_PRODUCT_TYPES_PRODUCTS" FromRole="PRODUCTS" ToRole="PRODUCT_TYPES" />
+  </EntityType>
+  <EntityType Name="SERVICES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Sub" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsHot" Type="Boolean" />
+    <Property Name="TotalView" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="ID_UserPost" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="ID_GroupServices" Type="Int32" />
+    <NavigationProperty Name="GROUP_SERVICES" Relationship="Self.FK_SERVICES_GROUP_SERVICES" FromRole="SERVICES" ToRole="GROUP_SERVICES" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK_SERVICES_USERS" FromRole="SERVICES" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="SIZES">
+    <Key>
+      <PropertyRef Name="SizeId" />
+    </Key>
+    <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="PRODUCT_SIZES" Relationship="Self.FK_PRODUCT_SIZES_PRODUCT_SIZES" FromRole="SIZES" ToRole="PRODUCT_SIZES" />
+  </EntityType>
+  <EntityType Name="SOCIAL_NETWORK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Href" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TYPES">
+    <Key>
+      <PropertyRef Name="ID_Type" />
+    </Key>
+    <Property Name="ID_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tag" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PRODUCT_TYPES" Relationship="Self.FK_PRODUCT_TYPES_TYPES" FromRole="TYPES" ToRole="PRODUCT_TYPES" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NEWS" Relationship="Self.FK_NEWS_USER" FromRole="USERS" ToRole="NEWS" />
+    <NavigationProperty Name="SERVICES" Relationship="Self.FK_SERVICES_USERS" FromRole="USERS" ToRole="SERVICES" />
+  </EntityType>
+  <Association Name="FK_PRODUCT_COLORS_COLORS">
+    <End Role="COLORS" Type="Self.COLORS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_COLORS" Type="Self.PRODUCT_COLORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COLORS">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="PRODUCT_COLORS">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GALLERY_GROUP_GALLERY">
+    <End Role="GROUP_GALLERY" Type="Self.GROUP_GALLERY" Multiplicity="0..1" />
+    <End Role="GALLERY" Type="Self.GALLERY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_GALLERY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GALLERY">
+        <PropertyRef Name="ID_GroupGallery" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_GROUP_NEWS">
+    <End Role="GROUP_NEWS" Type="Self.GROUP_NEWS" Multiplicity="0..1" />
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_NEWS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="ID_GroupNews" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS_GROUP_PRODUCTS">
+    <End Role="GROUP_PRODUCTS" Type="Self.GROUP_PRODUCTS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="ID_GroupProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICES_GROUP_SERVICES">
+    <End Role="GROUP_SERVICES" Type="Self.GROUP_SERVICES" Multiplicity="0..1" />
+    <End Role="SERVICES" Type="Self.SERVICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_SERVICES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SERVICES">
+        <PropertyRef Name="ID_GroupServices" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_USER">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="ID_UserPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_DETAILS_ORDER_PRODUCTS">
+    <End Role="ORDER_PRODUCTS" Type="Self.ORDER_PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ORDER_DETAILS" Type="Self.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER_PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERS_PRODUCTS_ORDER_STATUSES">
+    <End Role="ORDER_STATUSES" Type="Self.ORDER_STATUSES" Multiplicity="0..1" />
+    <End Role="ORDER_PRODUCTS" Type="Self.ORDER_PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER_STATUSES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_PRODUCTS">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_COLORS_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_COLORS" Type="Self.PRODUCT_COLORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_COLORS">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_IMAGES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_IMAGES" Type="Self.PRODUCT_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_IMAGES">
+        <PropertyRef Name="ID_Products" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_SIZES_PRODUCT_SIZES">
+    <End Role="SIZES" Type="Self.SIZES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_SIZES" Type="Self.PRODUCT_SIZES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIZES">
+        <PropertyRef Name="SizeId" />
+      </Principal>
+      <Dependent Role="PRODUCT_SIZES">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_SIZES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_SIZES" Type="Self.PRODUCT_SIZES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_SIZES">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS_PRODUCT_STATUS">
+    <End Role="PRODUCT_STATUS" Type="Self.PRODUCT_STATUS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT_STATUS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_TYPES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1" />
+    <End Role="PRODUCT_TYPES" Type="Self.PRODUCT_TYPES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_TYPES">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_TYPES_TYPES">
+    <End Role="TYPES" Type="Self.TYPES" Multiplicity="0..1" />
+    <End Role="PRODUCT_TYPES" Type="Self.PRODUCT_TYPES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPES">
+        <PropertyRef Name="ID_Type" />
+      </Principal>
+      <Dependent Role="PRODUCT_TYPES">
+        <PropertyRef Name="ID_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICES_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="SERVICES" Type="Self.SERVICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SERVICES">
+        <PropertyRef Name="ID_UserPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Mobile_ShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANNERS" EntityType="Self.BANNERS" />
+    <EntitySet Name="COLORS" EntityType="Self.COLORS" />
+    <EntitySet Name="CONTACTS" EntityType="Self.CONTACTS" />
+    <EntitySet Name="GALLERY" EntityType="Self.GALLERY" />
+    <EntitySet Name="GROUP_GALLERY" EntityType="Self.GROUP_GALLERY" />
+    <EntitySet Name="GROUP_NEWS" EntityType="Self.GROUP_NEWS" />
+    <EntitySet Name="GROUP_PRODUCTS" EntityType="Self.GROUP_PRODUCTS" />
+    <EntitySet Name="GROUP_SERVICES" EntityType="Self.GROUP_SERVICES" />
+    <EntitySet Name="LINKS" EntityType="Self.LINKS" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" />
+    <EntitySet Name="ORDER_DETAILS" EntityType="Self.ORDER_DETAILS" />
+    <EntitySet Name="ORDER_PRODUCTS" EntityType="Self.ORDER_PRODUCTS" />
+    <EntitySet Name="ORDER_STATUSES" EntityType="Self.ORDER_STATUSES" />
+    <EntitySet Name="PAGES" EntityType="Self.PAGES" />
+    <EntitySet Name="PRODUCT_COLORS" EntityType="Self.PRODUCT_COLORS" />
+    <EntitySet Name="PRODUCT_IMAGES" EntityType="Self.PRODUCT_IMAGES" />
+    <EntitySet Name="PRODUCT_SIZES" EntityType="Self.PRODUCT_SIZES" />
+    <EntitySet Name="PRODUCT_STATUS" EntityType="Self.PRODUCT_STATUS" />
+    <EntitySet Name="PRODUCT_TYPES" EntityType="Self.PRODUCT_TYPES" />
+    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" />
+    <EntitySet Name="SERVICES" EntityType="Self.SERVICES" />
+    <EntitySet Name="SIZES" EntityType="Self.SIZES" />
+    <EntitySet Name="SOCIAL_NETWORK" EntityType="Self.SOCIAL_NETWORK" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TYPES" EntityType="Self.TYPES" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" />
+    <AssociationSet Name="FK_PRODUCT_COLORS_COLORS" Association="Self.FK_PRODUCT_COLORS_COLORS">
+      <End Role="COLORS" EntitySet="COLORS" />
+      <End Role="PRODUCT_COLORS" EntitySet="PRODUCT_COLORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GALLERY_GROUP_GALLERY" Association="Self.FK_GALLERY_GROUP_GALLERY">
+      <End Role="GROUP_GALLERY" EntitySet="GROUP_GALLERY" />
+      <End Role="GALLERY" EntitySet="GALLERY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_GROUP_NEWS" Association="Self.FK_NEWS_GROUP_NEWS">
+      <End Role="GROUP_NEWS" EntitySet="GROUP_NEWS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS_GROUP_PRODUCTS" Association="Self.FK_PRODUCTS_GROUP_PRODUCTS">
+      <End Role="GROUP_PRODUCTS" EntitySet="GROUP_PRODUCTS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICES_GROUP_SERVICES" Association="Self.FK_SERVICES_GROUP_SERVICES">
+      <End Role="GROUP_SERVICES" EntitySet="GROUP_SERVICES" />
+      <End Role="SERVICES" EntitySet="SERVICES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_USER" Association="Self.FK_NEWS_USER">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_DETAILS_ORDER_PRODUCTS" Association="Self.FK_ORDER_DETAILS_ORDER_PRODUCTS">
+      <End Role="ORDER_PRODUCTS" EntitySet="ORDER_PRODUCTS" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERS_PRODUCTS_ORDER_STATUSES" Association="Self.FK_ORDERS_PRODUCTS_ORDER_STATUSES">
+      <End Role="ORDER_STATUSES" EntitySet="ORDER_STATUSES" />
+      <End Role="ORDER_PRODUCTS" EntitySet="ORDER_PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_COLORS_PRODUCTS" Association="Self.FK_PRODUCT_COLORS_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_COLORS" EntitySet="PRODUCT_COLORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_IMAGES_PRODUCTS" Association="Self.FK_PRODUCT_IMAGES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_IMAGES" EntitySet="PRODUCT_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_SIZES_PRODUCT_SIZES" Association="Self.FK_PRODUCT_SIZES_PRODUCT_SIZES">
+      <End Role="SIZES" EntitySet="SIZES" />
+      <End Role="PRODUCT_SIZES" EntitySet="PRODUCT_SIZES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_SIZES_PRODUCTS" Association="Self.FK_PRODUCT_SIZES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_SIZES" EntitySet="PRODUCT_SIZES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS_PRODUCT_STATUS" Association="Self.FK_PRODUCTS_PRODUCT_STATUS">
+      <End Role="PRODUCT_STATUS" EntitySet="PRODUCT_STATUS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_TYPES_PRODUCTS" Association="Self.FK_PRODUCT_TYPES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_TYPES" EntitySet="PRODUCT_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_TYPES_TYPES" Association="Self.FK_PRODUCT_TYPES_TYPES">
+      <End Role="TYPES" EntitySet="TYPES" />
+      <End Role="PRODUCT_TYPES" EntitySet="PRODUCT_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICES_USERS" Association="Self.FK_SERVICES_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="SERVICES" EntitySet="SERVICES" />
+    </AssociationSet>
+    <FunctionImport Name="f_GetGROUP_NEWS_InParent" ReturnType="Collection(Mobile_ShopModel.f_GetGROUP_NEWS_InParent_Result)" IsComposable="true">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="f_GetGROUP_PRODUCTS_InParent" ReturnType="Collection(Mobile_ShopModel.f_GetGROUP_PRODUCTS_InParent_Result)" IsComposable="true">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="f_GetGROUP_SERVICES_InParent" ReturnType="Collection(Mobile_ShopModel.f_GetGROUP_SERVICES_InParent_Result)" IsComposable="true">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_NEWS_FEATURED_CATID" ReturnType="Collection(Mobile_ShopModel.GET_NEWS_FEATURED_CATID_Result)">
+      <Parameter Name="CatId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_NEWS_PAGING" ReturnType="Collection(Mobile_ShopModel.GET_NEWS_PAGING_Result)">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_NEWS_PAGING_COUNT" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GET_NEWS_PAGING_COUNT_GROUP_NEWS" ReturnType="Collection(Int32)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_NEWS_PAGING_GROUP_NEWS" ReturnType="Collection(Mobile_ShopModel.GET_NEWS_PAGING_GROUP_NEWS_Result)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ORDER_DETAILS" ReturnType="Collection(Mobile_ShopModel.GET_ORDER_DETAILS_Result)">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ORDER_PRODUCT_PAGING" ReturnType="Collection(Mobile_ShopModel.GET_ORDER_PRODUCT_PAGING_Result)">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ORDER_PRODUCT_PAGING_COUNT" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GET_PRODUCT_FEATURED_CATID" ReturnType="Collection(Mobile_ShopModel.GET_PRODUCT_FEATURED_CATID_Result)">
+      <Parameter Name="CatId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PRODUCT_PAGING" ReturnType="Collection(Mobile_ShopModel.GET_PRODUCT_PAGING_Result)">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PRODUCT_PAGING_COUNT" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GET_PRODUCT_PAGING_COUNT_GROUP_PRODUCT" ReturnType="Collection(Int32)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PRODUCT_PAGING_GROUP_PRODUCT" ReturnType="Collection(Mobile_ShopModel.GET_PRODUCT_PAGING_GROUP_PRODUCT_Result)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PRODUCT_TYPE_ID" ReturnType="Collection(Mobile_ShopModel.GET_PRODUCT_TYPE_ID_Result)">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_ProductSize_By_ProductId" ReturnType="Collection(Mobile_ShopModel.Get_ProductSize_By_ProductId_Result)">
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_SERVICES_PAGING" ReturnType="Collection(Mobile_ShopModel.GET_SERVICES_PAGING_Result)">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_SERVICES_PAGING_COUNT" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GET_SERVICES_PAGING_COUNT_GROUP_SERVICES" ReturnType="Collection(Int32)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_SERVICES_PAGING_GROUP_SERVICES" ReturnType="Collection(Mobile_ShopModel.GET_SERVICES_PAGING_GROUP_SERVICES_Result)">
+      <Parameter Name="CatID" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_USERS_PAGING" ReturnType="Collection(Mobile_ShopModel.GET_USERS_PAGING_Result)">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_USERS_PAGING_COUNT" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Mobile_ShopModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Mobile_ShopModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="GET_NEWS_FEATURED_CATID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="News_Sapo" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int32" Name="TotalView" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ID_UserPost" Nullable="true" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="Int32" Name="ID_GroupNews" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_NEWS_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="News_Sapo" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int32" Name="TotalView" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ID_UserPost" Nullable="true" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="Int32" Name="ID_GroupNews" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_NEWS_PAGING_GROUP_NEWS_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="News_Sapo" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int32" Name="TotalView" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ID_UserPost" Nullable="true" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="Int32" Name="ID_GroupNews" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_ORDER_DETAILS_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Quantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_ORDER_PRODUCT_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="450" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CustomerNote" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="true" />
+    <Property Type="String" Name="TypePayment" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TypeShipping" Nullable="true" MaxLength="250" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PRODUCT_FEATURED_CATID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Sapo" Nullable="true" />
+    <Property Type="String" Name="Content" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="PriceOld" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ID_GroupProduct" Nullable="true" />
+    <Property Type="DateTime" Name="DatePublish" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CountView" Nullable="true" />
+    <Property Type="Int32" Name="CountBuy" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PRODUCT_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Sapo" Nullable="true" />
+    <Property Type="String" Name="Content" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="PriceOld" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ID_GroupProduct" Nullable="true" />
+    <Property Type="DateTime" Name="DatePublish" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CountView" Nullable="true" />
+    <Property Type="Int32" Name="CountBuy" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PRODUCT_PAGING_GROUP_PRODUCT_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Sapo" Nullable="true" />
+    <Property Type="String" Name="Content" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="PriceOld" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ID_GroupProduct" Nullable="true" />
+    <Property Type="DateTime" Name="DatePublish" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CountView" Nullable="true" />
+    <Property Type="Int32" Name="CountBuy" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PRODUCT_TYPE_ID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="450" />
+    <Property Type="String" Name="Sapo" Nullable="true" />
+    <Property Type="String" Name="Content" Nullable="true" MaxLength="Max" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="PriceOld" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ID_GroupProduct" Nullable="true" />
+    <Property Type="DateTime" Name="DatePublish" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CountView" Nullable="true" />
+    <Property Type="Int32" Name="CountBuy" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_ProductSize_By_ProductId_Result">
+    <Property Type="Int32" Name="SizeId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Int32" Name="SelectedId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_SERVICES_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Sub" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int32" Name="TotalView" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ID_UserPost" Nullable="true" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="Int32" Name="ID_GroupServices" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_SERVICES_PAGING_GROUP_SERVICES_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Sub" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="550" />
+    <Property Type="String" Name="Content" Nullable="true" />
+    <Property Type="Boolean" Name="IsHot" Nullable="true" />
+    <Property Type="Int32" Name="TotalView" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ID_UserPost" Nullable="true" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="Int32" Name="ID_GroupServices" Nullable="true" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_USERS_PAGING_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="String" Name="Fullname" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="550" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Note" Nullable="true" MaxLength="550" />
+    <Property Type="Boolean" Name="Active" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+    <Property Type="Int64" Name="Row" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

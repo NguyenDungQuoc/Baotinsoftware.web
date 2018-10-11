@@ -1,0 +1,65 @@
+﻿.mb20{position:relative;}
+.mt5 {
+    padding-top: 35px;
+    font-size: 12px;
+    font-style: italic;
+    color: #101010;
+    text-align: left;
+}
+.upload-item {
+    cursor: pointer;
+    position: relative;
+}
+.upload-item .upload-item-delete,
+.upload-item .upload-item-rotate {
+    position: absolute;
+}
+.default-theme .upload-item {
+    width: 100px;
+    height: 90px;
+    overflow: hidden;
+    float: left;
+    margin-right: 4px;
+}
+.default-theme .working-upload-item {
+    background: url('/Theme/Plugins/uploadFile/images/bg-upload-area.png') no-repeat;
+    width: 120px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+.default-theme .upload-item-loading {
+    background: url('/Theme/Plugins/uploadFile/images/ajax-loader.gif') no-repeat scroll center;
+}
+.default-theme .upload-item .upload-item-delete {
+    background: url('/Theme/Plugins/uploadFile/images/upload-tool-delete.png') no-repeat;
+    width: 24px;
+    height: 24px;
+    right: -1px;
+    top: 3px;
+    border: 0;
+}
+.default-theme .upload-item .upload-item-rotate {
+    background: url('/Theme/Plugins/uploadFile/images/upload-tool-rotation.png') no-repeat;
+    width: 24px;
+    height: 24px;
+    left: 1px;
+    top: 1px;
+    border: 0;
+}
+.default-theme .fileuploadie7 {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    width: 90px;
+    height: 90px;
+    display: block;
+    cursor: pointer;
+}
+/*for ie7*/
+.default-theme .upload-item img.background {
+    width: 90px;
+    height: 90px;
+}

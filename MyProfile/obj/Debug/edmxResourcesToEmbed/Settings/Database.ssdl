@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Mobile_ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BANNERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Content" Type="nvarchar" MaxLength="450" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Href" Type="nvarchar(max)" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="COLORS">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hex" Type="nvarchar" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="CONTACTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Content" Type="nvarchar" MaxLength="550" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GALLERY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Href" Type="nvarchar" MaxLength="450" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="ID_GroupGallery" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="GROUP_GALLERY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Parent_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="GROUP_NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="250" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="ParentID" Type="int" />
+  </EntityType>
+  <EntityType Name="GROUP_PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="450" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="450" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="GROUP_SERVICES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="550" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="550" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="550" />
+  </EntityType>
+  <EntityType Name="LINKS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Href" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="350" />
+    <Property Name="News_Sapo" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="450" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="IsHot" Type="bit" />
+    <Property Name="TotalView" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="ID_UserPost" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="ID_GroupNews" Type="int" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="ORDER_PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar" MaxLength="450" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="CustomerNote" Type="nvarchar(max)" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="TypePayment" Type="nvarchar" MaxLength="250" />
+    <Property Name="TypeShipping" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ORDER_STATUSES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="PAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="250" />
+    <Property Name="Slogan" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Keyword" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
+    <Property Name="Favicon" Type="nvarchar" MaxLength="250" />
+    <Property Name="GoogleAnalytics" Type="nvarchar(max)" />
+    <Property Name="MapCode" Type="nvarchar" MaxLength="550" />
+    <Property Name="Fanpage" Type="nvarchar(max)" />
+    <Property Name="Copyright" Type="nvarchar(max)" />
+    <Property Name="Contact" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PRODUCT_COLORS">
+    <Key>
+      <PropertyRef Name="ProductColorId" />
+    </Key>
+    <Property Name="ProductColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColorId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCT_IMAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" MaxLength="550" />
+    <Property Name="Note" Type="nvarchar" MaxLength="550" />
+    <Property Name="ID_Products" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCT_SIZES">
+    <Key>
+      <PropertyRef Name="ProductSizeId" />
+    </Key>
+    <Property Name="ProductSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SizeId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCT_STATUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PRODUCT_TYPES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Product" Type="int" />
+    <Property Name="ID_Type" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="450" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="450" />
+    <Property Name="Image" Type="nvarchar" MaxLength="450" />
+    <Property Name="Sapo" Type="nvarchar(max)" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="PriceOld" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ID_GroupProduct" Type="int" />
+    <Property Name="DatePublish" Type="datetime" />
+    <Property Name="CountView" Type="int" />
+    <Property Name="CountBuy" Type="int" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsHot" Type="bit" />
+  </EntityType>
+  <EntityType Name="SERVICES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="550" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="550" />
+    <Property Name="Sub" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="550" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="IsHot" Type="bit" />
+    <Property Name="TotalView" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="ID_UserPost" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="ID_GroupServices" Type="int" />
+  </EntityType>
+  <EntityType Name="SIZES">
+    <Key>
+      <PropertyRef Name="SizeId" />
+    </Key>
+    <Property Name="SizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="SOCIAL_NETWORK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Href" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TYPES">
+    <Key>
+      <PropertyRef Name="ID_Type" />
+    </Key>
+    <Property Name="ID_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="150" />
+    <Property Name="Image" Type="nvarchar" MaxLength="550" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Note" Type="nvarchar" MaxLength="550" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_GALLERY_GROUP_GALLERY">
+    <End Role="GROUP_GALLERY" Type="Self.GROUP_GALLERY" Multiplicity="0..1" />
+    <End Role="GALLERY" Type="Self.GALLERY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_GALLERY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GALLERY">
+        <PropertyRef Name="ID_GroupGallery" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_GROUP_NEWS">
+    <End Role="GROUP_NEWS" Type="Self.GROUP_NEWS" Multiplicity="0..1" />
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_NEWS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="ID_GroupNews" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NEWS_USER">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="ID_UserPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_DETAILS_ORDER_PRODUCTS">
+    <End Role="ORDER_PRODUCTS" Type="Self.ORDER_PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ORDER_DETAILS" Type="Self.ORDER_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER_PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_DETAILS">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERS_PRODUCTS_ORDER_STATUSES">
+    <End Role="ORDER_STATUSES" Type="Self.ORDER_STATUSES" Multiplicity="0..1" />
+    <End Role="ORDER_PRODUCTS" Type="Self.ORDER_PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER_STATUSES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDER_PRODUCTS">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_COLORS_COLORS">
+    <End Role="COLORS" Type="Self.COLORS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_COLORS" Type="Self.PRODUCT_COLORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COLORS">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="PRODUCT_COLORS">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_COLORS_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_COLORS" Type="Self.PRODUCT_COLORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_COLORS">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_IMAGES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_IMAGES" Type="Self.PRODUCT_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_IMAGES">
+        <PropertyRef Name="ID_Products" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_SIZES_PRODUCT_SIZES">
+    <End Role="SIZES" Type="Self.SIZES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_SIZES" Type="Self.PRODUCT_SIZES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIZES">
+        <PropertyRef Name="SizeId" />
+      </Principal>
+      <Dependent Role="PRODUCT_SIZES">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_SIZES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PRODUCT_SIZES" Type="Self.PRODUCT_SIZES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_SIZES">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_TYPES_PRODUCTS">
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="0..1" />
+    <End Role="PRODUCT_TYPES" Type="Self.PRODUCT_TYPES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_TYPES">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCT_TYPES_TYPES">
+    <End Role="TYPES" Type="Self.TYPES" Multiplicity="0..1" />
+    <End Role="PRODUCT_TYPES" Type="Self.PRODUCT_TYPES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPES">
+        <PropertyRef Name="ID_Type" />
+      </Principal>
+      <Dependent Role="PRODUCT_TYPES">
+        <PropertyRef Name="ID_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS_GROUP_PRODUCTS">
+    <End Role="GROUP_PRODUCTS" Type="Self.GROUP_PRODUCTS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_PRODUCTS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="ID_GroupProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTS_PRODUCT_STATUS">
+    <End Role="PRODUCT_STATUS" Type="Self.PRODUCT_STATUS" Multiplicity="0..1" />
+    <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT_STATUS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTS">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICES_GROUP_SERVICES">
+    <End Role="GROUP_SERVICES" Type="Self.GROUP_SERVICES" Multiplicity="0..1" />
+    <End Role="SERVICES" Type="Self.SERVICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP_SERVICES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SERVICES">
+        <PropertyRef Name="ID_GroupServices" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICES_USERS">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="SERVICES" Type="Self.SERVICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SERVICES">
+        <PropertyRef Name="ID_UserPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="f_GetGROUP_NEWS_InParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ID" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_GetGROUP_PRODUCTS_InParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ID" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_GetGROUP_SERVICES_InParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ID" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GET_NEWS_FEATURED_CATID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_NEWS_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_NEWS_PAGING_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_NEWS_PAGING_COUNT_GROUP_NEWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_NEWS_PAGING_GROUP_NEWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_ORDER_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_ORDER_PRODUCT_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_ORDER_PRODUCT_PAGING_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_PRODUCT_FEATURED_CATID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_PRODUCT_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_PRODUCT_PAGING_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_PRODUCT_PAGING_COUNT_GROUP_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_PRODUCT_PAGING_GROUP_PRODUCT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_PRODUCT_TYPE_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_ProductSize_By_ProductId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_SERVICES_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_SERVICES_PAGING_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_SERVICES_PAGING_COUNT_GROUP_SERVICES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_SERVICES_PAGING_GROUP_SERVICES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CatID" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_USERS_PAGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_USERS_PAGING_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Mobile_ShopModelStoreContainer">
+    <EntitySet Name="BANNERS" EntityType="Self.BANNERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COLORS" EntityType="Self.COLORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTACTS" EntityType="Self.CONTACTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GALLERY" EntityType="Self.GALLERY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP_GALLERY" EntityType="Self.GROUP_GALLERY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP_NEWS" EntityType="Self.GROUP_NEWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP_PRODUCTS" EntityType="Self.GROUP_PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP_SERVICES" EntityType="Self.GROUP_SERVICES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LINKS" EntityType="Self.LINKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_DETAILS" EntityType="Self.ORDER_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_PRODUCTS" EntityType="Self.ORDER_PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_STATUSES" EntityType="Self.ORDER_STATUSES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAGES" EntityType="Self.PAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT_COLORS" EntityType="Self.PRODUCT_COLORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT_IMAGES" EntityType="Self.PRODUCT_IMAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT_SIZES" EntityType="Self.PRODUCT_SIZES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT_STATUS" EntityType="Self.PRODUCT_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT_TYPES" EntityType="Self.PRODUCT_TYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICES" EntityType="Self.SERVICES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SIZES" EntityType="Self.SIZES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOCIAL_NETWORK" EntityType="Self.SOCIAL_NETWORK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TYPES" EntityType="Self.TYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_GALLERY_GROUP_GALLERY" Association="Self.FK_GALLERY_GROUP_GALLERY">
+      <End Role="GROUP_GALLERY" EntitySet="GROUP_GALLERY" />
+      <End Role="GALLERY" EntitySet="GALLERY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_GROUP_NEWS" Association="Self.FK_NEWS_GROUP_NEWS">
+      <End Role="GROUP_NEWS" EntitySet="GROUP_NEWS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NEWS_USER" Association="Self.FK_NEWS_USER">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_DETAILS_ORDER_PRODUCTS" Association="Self.FK_ORDER_DETAILS_ORDER_PRODUCTS">
+      <End Role="ORDER_PRODUCTS" EntitySet="ORDER_PRODUCTS" />
+      <End Role="ORDER_DETAILS" EntitySet="ORDER_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERS_PRODUCTS_ORDER_STATUSES" Association="Self.FK_ORDERS_PRODUCTS_ORDER_STATUSES">
+      <End Role="ORDER_STATUSES" EntitySet="ORDER_STATUSES" />
+      <End Role="ORDER_PRODUCTS" EntitySet="ORDER_PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_COLORS_COLORS" Association="Self.FK_PRODUCT_COLORS_COLORS">
+      <End Role="COLORS" EntitySet="COLORS" />
+      <End Role="PRODUCT_COLORS" EntitySet="PRODUCT_COLORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_COLORS_PRODUCTS" Association="Self.FK_PRODUCT_COLORS_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_COLORS" EntitySet="PRODUCT_COLORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_IMAGES_PRODUCTS" Association="Self.FK_PRODUCT_IMAGES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_IMAGES" EntitySet="PRODUCT_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_SIZES_PRODUCT_SIZES" Association="Self.FK_PRODUCT_SIZES_PRODUCT_SIZES">
+      <End Role="SIZES" EntitySet="SIZES" />
+      <End Role="PRODUCT_SIZES" EntitySet="PRODUCT_SIZES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_SIZES_PRODUCTS" Association="Self.FK_PRODUCT_SIZES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_SIZES" EntitySet="PRODUCT_SIZES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_TYPES_PRODUCTS" Association="Self.FK_PRODUCT_TYPES_PRODUCTS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_TYPES" EntitySet="PRODUCT_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCT_TYPES_TYPES" Association="Self.FK_PRODUCT_TYPES_TYPES">
+      <End Role="TYPES" EntitySet="TYPES" />
+      <End Role="PRODUCT_TYPES" EntitySet="PRODUCT_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS_GROUP_PRODUCTS" Association="Self.FK_PRODUCTS_GROUP_PRODUCTS">
+      <End Role="GROUP_PRODUCTS" EntitySet="GROUP_PRODUCTS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTS_PRODUCT_STATUS" Association="Self.FK_PRODUCTS_PRODUCT_STATUS">
+      <End Role="PRODUCT_STATUS" EntitySet="PRODUCT_STATUS" />
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICES_GROUP_SERVICES" Association="Self.FK_SERVICES_GROUP_SERVICES">
+      <End Role="GROUP_SERVICES" EntitySet="GROUP_SERVICES" />
+      <End Role="SERVICES" EntitySet="SERVICES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICES_USERS" Association="Self.FK_SERVICES_USERS">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="SERVICES" EntitySet="SERVICES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MyProfile.Site" %>
+<%@ Register Src="~/Modules/Header.ascx" TagPrefix="uc1" TagName="Header" %>
+<%@ Register Src="~/Modules/Footer.ascx" TagPrefix="uc1" TagName="Footer" %>
+<%@ Register Src="~/Modules/Banners/BannerWowSlider.ascx" TagPrefix="uc1" TagName="BannerWowSlider" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Trang chủ - BAOTINSOFTWARE.COM</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- META CONTENT -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+    <%--<meta http-equiv="REFRESH" content="1800" />--%>
+    <meta name="robots" content="noodp, noydir" />
+    <meta http-equiv="content-language" content="en" />    
+    <!-- META DC-->    
+    <asp:Literal runat="server" ID="ltrMeta"></asp:Literal>
+    <meta name="dc.type" content="WebPage"/>
+    <meta name="dc.format" content="text/html"/>
+    <meta name="dc.source" content="http://baotinsoftware.com/"/>        
+    <!-- styles -->  
+    <link href="/Theme/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Theme/font-awesome-440/css/font-awesome.css" rel="stylesheet" />
+    <link href="/Theme/css/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/Theme/js/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="/Theme/js/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- styles -->
+    <link href="/Theme/css/main.css" rel="stylesheet" />
+    <link id="favicon" rel="shortcut icon" runat="server" type="image/x-icon" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- jquery -->
+        <script src="/Theme/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+        <script src="/Theme/js/bootstrap.min.js" type="text/javascript"></script>
+        <uc1:Header runat="server" id="Header" />        
+        <uc1:BannerWowSlider runat="server" ID="BannerWowSlider" />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">            
+        </asp:ContentPlaceHolder>
+        <uc1:Footer runat="server" id="Footer" />
+        <a id="scrollUp" href="#" class="go-top"><i class="fa fa-angle-up"></i></a>         
+        <div class="call-now"><a class="fa fa-phone fa-2x" href="tel:0988898996" title="Gọi ngay cho chúng tôi"></a></div>
+    </form>    
+    <!-- Add fancyBox main JS and CSS files -->
+    <script src="/Theme/js/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="/Theme/js/jquery.fancybox.js" type="text/javascript"></script> 
+    <script src="/Scripts/ShAjax.js" type="text/javascript"></script>            
+    <script src="/Theme/javascript/js_pagingCustoms.js" type="text/javascript"></script>
+    <%--<script type="text/javascript" src="/Theme/js/zoompic/ZoomPic.js"></script>--%>    
+    <script src="/Theme/js/main.js" type="text/javascript"></script>           
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55fa50562eecf9aa" async="async" type="text/javascript"></script>        
+</body>
+</html>

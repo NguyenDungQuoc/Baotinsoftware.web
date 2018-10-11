@@ -1,0 +1,846 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="namnt_baotinsoftware.com.vn" Class="DatabaseToLinqEntityDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-TVI0KI0D\SQLEXPRESS;Initial Catalog=namnt_baotinsoftware.com.vn;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="namnt_baotinsoftware_com_vnConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BANNERS" Member="BANNERs">
+    <Type Name="BANNER">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Href" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USERS" Member="USERs">
+    <Type Name="USER">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="USER_NEW" Member="NEWs" ThisKey="ID" OtherKey="ID_UserPost" Type="NEW" />
+      <Association Name="USER_SERVICE" Member="SERVICEs" ThisKey="ID" OtherKey="ID_UserPost" Type="SERVICE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COLORS" Member="COLORs">
+    <Type Name="COLOR">
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hex" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="COLOR_PRODUCT_COLOR" Member="PRODUCT_COLORs" ThisKey="ColorId" OtherKey="ColorId" Type="PRODUCT_COLOR" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comment" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="CommentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LinkId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="AttachFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDisable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONTACTS" Member="CONTACTs">
+    <Type Name="CONTACT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DOWNLOAD" Member="DOWNLOADs">
+    <Type Name="DOWNLOAD">
+      <Column Name="DownloadId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GALLERY" Member="GALLERies">
+    <Type Name="GALLERY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Href" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_GroupGallery" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="GROUP_GALLERY_GALLERY" Member="GROUP_GALLERY" ThisKey="ID_GroupGallery" OtherKey="ID" Type="GROUP_GALLERY" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GROUP_GALLERY" Member="GROUP_GALLERies">
+    <Type Name="GROUP_GALLERY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Parent_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="GROUP_GALLERY_GALLERY" Member="GALLERies" ThisKey="ID" OtherKey="ID_GroupGallery" Type="GALLERY" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GROUP_NEWS" Member="GROUP_NEWs">
+    <Type Name="GROUP_NEW">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="GROUP_NEW_NEW" Member="NEWs" ThisKey="ID" OtherKey="ID_GroupNews" Type="NEW" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GROUP_PRODUCTS" Member="GROUP_PRODUCTs">
+    <Type Name="GROUP_PRODUCT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="GROUP_PRODUCT_PRODUCT" Member="PRODUCTs" ThisKey="ID" OtherKey="ID_GroupProduct" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GROUP_SERVICES" Member="GROUP_SERVICEs">
+    <Type Name="GROUP_SERVICE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Association Name="GROUP_SERVICE_SERVICE" Member="SERVICEs" ThisKey="ID" OtherKey="ID_GroupServices" Type="SERVICE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HashTag" Member="HashTags">
+    <Type Name="HashTag">
+      <Column Name="HashTagId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEnable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="HashTag_HashTagLink" Member="HashTagLinks" ThisKey="HashTagId" OtherKey="HashTagId" Type="HashTagLink" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HashTagLink" Member="HashTagLinks">
+    <Type Name="HashTagLink">
+      <Column Name="HashTagLinkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HashTagId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="HashTag_HashTagLink" Member="HashTag" ThisKey="HashTagId" OtherKey="HashTagId" Type="HashTag" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LINKS" Member="LINKs">
+    <Type Name="LINK">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Href" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NEWS" Member="NEWs">
+    <Type Name="NEW">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="News_Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupNews" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NEW_PRODUCT_NEW" Member="PRODUCT_NEWs" ThisKey="ID" OtherKey="NewsId" Type="PRODUCT_NEW" />
+      <Association Name="GROUP_NEW_NEW" Member="GROUP_NEW" ThisKey="ID_GroupNews" OtherKey="ID" Type="GROUP_NEW" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="USER_NEW" Member="USER" ThisKey="ID_UserPost" OtherKey="ID" Type="USER" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDER_DETAILS" Member="ORDER_DETAILs">
+    <Type Name="ORDER_DETAIL">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="ORDER_PRODUCT_ORDER_DETAIL" Member="ORDER_PRODUCT" ThisKey="OrderID" OtherKey="ID" Type="ORDER_PRODUCT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDER_PRODUCTS" Member="ORDER_PRODUCTs">
+    <Type Name="ORDER_PRODUCT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerNote" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypePayment" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="TypeShipping" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="ORDER_PRODUCT_ORDER_DETAIL" Member="ORDER_DETAILs" ThisKey="ID" OtherKey="OrderID" Type="ORDER_DETAIL" />
+      <Association Name="ORDER_STATUSE_ORDER_PRODUCT" Member="ORDER_STATUSE" ThisKey="StatusID" OtherKey="ID" Type="ORDER_STATUSE" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDER_STATUSES" Member="ORDER_STATUSEs">
+    <Type Name="ORDER_STATUSE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="ORDER_STATUSE_ORDER_PRODUCT" Member="ORDER_PRODUCTs" ThisKey="ID" OtherKey="StatusID" Type="ORDER_PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PAGES" Member="PAGEs">
+    <Type Name="PAGE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Slogan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Favicon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="GoogleAnalytics" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MapCode" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Fanpage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Copyright" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_COLORS" Member="PRODUCT_COLORs">
+    <Type Name="PRODUCT_COLOR">
+      <Column Name="ProductColorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="COLOR_PRODUCT_COLOR" Member="COLOR" ThisKey="ColorId" OtherKey="ColorId" Type="COLOR" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="PRODUCT_PRODUCT_COLOR" Member="PRODUCT" ThisKey="ProductId" OtherKey="ID" Type="PRODUCT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_IMAGES" Member="PRODUCT_IMAGEs">
+    <Type Name="PRODUCT_IMAGE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="ID_Products" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PRODUCT_PRODUCT_IMAGE" Member="PRODUCT" ThisKey="ID_Products" OtherKey="ID" Type="PRODUCT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_NEWS" Member="PRODUCT_NEWs">
+    <Type Name="PRODUCT_NEW">
+      <Column Name="ProductNewsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisplayOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NEW_PRODUCT_NEW" Member="NEW" ThisKey="NewsId" OtherKey="ID" Type="NEW" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="PRODUCT_PRODUCT_NEW" Member="PRODUCT" ThisKey="ProductId" OtherKey="ID" Type="PRODUCT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_SIZES" Member="PRODUCT_SIZEs">
+    <Type Name="PRODUCT_SIZE">
+      <Column Name="ProductSizeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SizeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="PRODUCT_PRODUCT_SIZE" Member="PRODUCT" ThisKey="ProductId" OtherKey="ID" Type="PRODUCT" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="SIZE_PRODUCT_SIZE" Member="SIZE" ThisKey="SizeId" OtherKey="SizeId" Type="SIZE" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_STATUS" Member="PRODUCT_STATUS">
+    <Type Name="PRODUCT_STATUS">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="PRODUCT_STATUS_PRODUCT" Member="PRODUCTs" ThisKey="ID" OtherKey="StatusID" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT_TYPES" Member="PRODUCT_TYPEs">
+    <Type Name="PRODUCT_TYPE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Product" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PRODUCT_PRODUCT_TYPE" Member="PRODUCT" ThisKey="ID_Product" OtherKey="ID" Type="PRODUCT" IsForeignKey="true" />
+      <Association Name="TYPE_PRODUCT_TYPE" Member="TYPE" ThisKey="ID_Type" OtherKey="ID_Type" Type="TYPE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCTS" Member="PRODUCTs">
+    <Type Name="PRODUCT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ID_GroupProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LinkY" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Association Name="PRODUCT_PRODUCT_COLOR" Member="PRODUCT_COLORs" ThisKey="ID" OtherKey="ProductId" Type="PRODUCT_COLOR" />
+      <Association Name="PRODUCT_PRODUCT_IMAGE" Member="PRODUCT_IMAGEs" ThisKey="ID" OtherKey="ID_Products" Type="PRODUCT_IMAGE" />
+      <Association Name="PRODUCT_PRODUCT_NEW" Member="PRODUCT_NEWs" ThisKey="ID" OtherKey="ProductId" Type="PRODUCT_NEW" />
+      <Association Name="PRODUCT_PRODUCT_SIZE" Member="PRODUCT_SIZEs" ThisKey="ID" OtherKey="ProductId" Type="PRODUCT_SIZE" />
+      <Association Name="PRODUCT_PRODUCT_TYPE" Member="PRODUCT_TYPEs" ThisKey="ID" OtherKey="ID_Product" Type="PRODUCT_TYPE" />
+      <Association Name="GROUP_PRODUCT_PRODUCT" Member="GROUP_PRODUCT" ThisKey="ID_GroupProduct" OtherKey="ID" Type="GROUP_PRODUCT" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="PRODUCT_STATUS_PRODUCT" Member="PRODUCT_STATUS" ThisKey="StatusID" OtherKey="ID" Type="PRODUCT_STATUS" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SERVICES" Member="SERVICEs">
+    <Type Name="SERVICE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Sub" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupServices" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="GROUP_SERVICE_SERVICE" Member="GROUP_SERVICE" ThisKey="ID_GroupServices" OtherKey="ID" Type="GROUP_SERVICE" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="USER_SERVICE" Member="USER" ThisKey="ID_UserPost" OtherKey="ID" Type="USER" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SIZES" Member="SIZEs">
+    <Type Name="SIZE">
+      <Column Name="SizeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SIZE_PRODUCT_SIZE" Member="PRODUCT_SIZEs" ThisKey="SizeId" OtherKey="SizeId" Type="PRODUCT_SIZE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SOCIAL_NETWORK" Member="SOCIAL_NETWORKs">
+    <Type Name="SOCIAL_NETWORK">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Href" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TYPES" Member="TYPEs">
+    <Type Name="TYPE">
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TYPE_PRODUCT_TYPE" Member="PRODUCT_TYPEs" ThisKey="ID_Type" OtherKey="ID_Type" Type="PRODUCT_TYPE" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Fe_GetHashtagByLinkId" Method="Fe_GetHashtagByLinkId">
+    <Parameter Name="LinkId" Parameter="linkId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="Fe_GetHashtagByLinkIdResult">
+      <Column Name="HashTagId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LinkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="UrlFormat" Type="System.String" DbType="VarChar(368)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetProductPagingByCategoryIdCount" Method="GetProductPagingByCategoryIdCount">
+    <Parameter Name="CatId" Parameter="catId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetProductPagingByCategoryIdCountResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fe_GetProduct_Paging_By_HashtagId" Method="Fe_GetProduct_Paging_By_HashtagId">
+    <Parameter Name="HashtagId" Parameter="hashtagId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Fe_GetProduct_Paging_By_HashtagIdResult">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductCategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProductCategoryAlias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(980)" CanBeNull="true" />
+      <Column Name="CategoryUrl" Type="System.String" DbType="NVarChar(518)" CanBeNull="true" />
+      <Column Name="Youtube" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fe_GetProductByCategoryId" Method="Fe_GetProductByCategoryId">
+    <Parameter Name="CategoryId" Parameter="categoryId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Fe_GetProductByCategoryIdResult">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductCategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProductCategoryAlias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(980)" CanBeNull="true" />
+      <Column Name="CategoryUrl" Type="System.String" DbType="NVarChar(518)" CanBeNull="true" />
+      <Column Name="Youtube" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fe_GetProductById" Method="Fe_GetProductById">
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Fe_GetProductByIdResult">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductCategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProductCategoryAlias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(980)" CanBeNull="true" />
+      <Column Name="CategoryUrl" Type="System.String" DbType="NVarChar(518)" CanBeNull="true" />
+      <Column Name="Youtube" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_NEWS_FEATURED_CATID" Method="GET_NEWS_FEATURED_CATID">
+    <Parameter Name="CatId" Parameter="catId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_NEWS_FEATURED_CATIDResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="News_Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupNews" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_NEWS_PAGING" Method="GET_NEWS_PAGING">
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_NEWS_PAGINGResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="News_Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupNews" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_NEWS_PAGING_COUNT" Method="GET_NEWS_PAGING_COUNT">
+    <ElementType Name="GET_NEWS_PAGING_COUNTResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_NEWS_PAGING_COUNT_GROUP_NEWS" Method="GET_NEWS_PAGING_COUNT_GROUP_NEWS">
+    <Parameter Name="CatID" Parameter="catID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_NEWS_PAGING_COUNT_GROUP_NEWSResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_NEWS_PAGING_GROUP_NEWS" Method="GET_NEWS_PAGING_GROUP_NEWS">
+    <Parameter Name="CatID" Parameter="catID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_NEWS_PAGING_GROUP_NEWSResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="News_Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupNews" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_ORDER_DETAILS" Method="GET_ORDER_DETAILS">
+    <Parameter Name="OrderID" Parameter="orderID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_ORDER_DETAILSResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_ORDER_PRODUCT_PAGING" Method="GET_ORDER_PRODUCT_PAGING">
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_ORDER_PRODUCT_PAGINGResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerNote" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypePayment" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="TypeShipping" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_ORDER_PRODUCT_PAGING_COUNT" Method="GET_ORDER_PRODUCT_PAGING_COUNT">
+    <ElementType Name="GET_ORDER_PRODUCT_PAGING_COUNTResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_PRODUCT_PAGING" Method="GET_PRODUCT_PAGING">
+    <Parameter Name="FlagId" Parameter="flagId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_PRODUCT_PAGINGResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ID_GroupProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LinkY" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_PRODUCT_PAGING_COUNT" Method="GET_PRODUCT_PAGING_COUNT">
+    <Parameter Name="FlagId" Parameter="flagId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_PRODUCT_PAGING_COUNTResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_PRODUCT_TYPE_ID" Method="GET_PRODUCT_TYPE_ID">
+    <Parameter Name="TypeID" Parameter="typeID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_PRODUCT_TYPE_IDResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ID_GroupProduct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LinkY" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get_ProductColor_By_ProductId" Method="Get_ProductColor_By_ProductId">
+    <Parameter Name="productId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Get_ProductColor_By_ProductIdResult">
+      <Column Name="ColorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Hex" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SelectedId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get_ProductSize_By_ProductId" Method="Get_ProductSize_By_ProductId">
+    <Parameter Name="productId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Get_ProductSize_By_ProductIdResult">
+      <Column Name="SizeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SelectedId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_SERVICES_PAGING" Method="GET_SERVICES_PAGING">
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_SERVICES_PAGINGResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Sub" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupServices" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_SERVICES_PAGING_COUNT" Method="GET_SERVICES_PAGING_COUNT">
+    <ElementType Name="GET_SERVICES_PAGING_COUNTResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_SERVICES_PAGING_COUNT_GROUP_SERVICES" Method="GET_SERVICES_PAGING_COUNT_GROUP_SERVICES">
+    <Parameter Name="CatID" Parameter="catID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_SERVICES_PAGING_COUNT_GROUP_SERVICESResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_SERVICES_PAGING_GROUP_SERVICES" Method="GET_SERVICES_PAGING_GROUP_SERVICES">
+    <Parameter Name="CatID" Parameter="catID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_SERVICES_PAGING_GROUP_SERVICESResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Sub" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_UserPost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ID_GroupServices" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_USERS_PAGING" Method="GET_USERS_PAGING">
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GET_USERS_PAGINGResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GET_USERS_PAGING_COUNT" Method="GET_USERS_PAGING_COUNT">
+    <ElementType Name="GET_USERS_PAGING_COUNTResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCategoryProductByCountItemProduct" Method="GetCategoryProductByCountItemProduct">
+    <ElementType Name="GetCategoryProductByCountItemProductResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetProductByKeyword" Method="GetProductByKeyword">
+    <Parameter Name="Keyword" Parameter="keyword" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="GetProductByKeywordResult">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductCategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProductCategoryAlias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(980)" CanBeNull="true" />
+      <Column Name="CategoryUrl" Type="System.String" DbType="NVarChar(518)" CanBeNull="true" />
+      <Column Name="Youtube" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetProductPagingByCategoryId" Method="GetProductPagingByCategoryId">
+    <Parameter Name="CatId" Parameter="catId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="GetProductPagingByCategoryIdResult">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PriceOld" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePublish" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CountView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountBuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductCategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProductCategoryAlias" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(980)" CanBeNull="true" />
+      <Column Name="CategoryUrl" Type="System.String" DbType="NVarChar(518)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCommentByTypeId" Method="GetCommentByTypeId">
+    <Parameter Name="TypeId" Parameter="typeId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="GetCommentByTypeIdResult">
+      <Column Name="CommentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LinkId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="AttachFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDisable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="ProductImage" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductUrl" Type="System.String" DbType="NVarChar(1030)" CanBeNull="true" />
+      <Column Name="ProductCategoryUrl" Type="System.String" DbType="NVarChar(568)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Sp_GetNewsPaging" Method="Sp_GetNewsPaging">
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="PrefixUrl" Parameter="prefixUrl" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Sp_GetNewsPagingResult">
+      <Column Name="NewsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sapo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewsCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CategoryAlias" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="UserPost" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="UrlFormat" Type="System.String" DbType="NVarChar(618)" CanBeNull="true" />
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Sp_GetNewsPagingCount" Method="Sp_GetNewsPagingCount">
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="Sp_GetNewsPagingCountResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
